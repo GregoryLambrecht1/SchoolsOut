@@ -1,0 +1,69 @@
+package model;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+public class Module {
+    @Id
+    @GeneratedValue
+    private long id;
+    private String name;
+    private String description;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Course course;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Exam> exams;
+
+    public Module() {
+    }
+
+    public Module(String name, String description, Course course) {
+        this.name = name;
+        this.description = description;
+        this.course = course;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public List<Exam> getExams() {
+        return exams;
+    }
+
+    public void setExams(List<Exam> exams) {
+        this.exams = exams;
+    }
+
+    @Override
+    public String toString() {
+        return "Module{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", course=" + course +
+                ", exams=" + exams +
+                '}';
+    }
+}
