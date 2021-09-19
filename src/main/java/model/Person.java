@@ -5,12 +5,13 @@ import javax.persistence.*;
 @Entity
 public class Person {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int Id;
     private String firstName;
     private String familyName;
+    @ManyToOne
     private Gender gender;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @Transient
     private Course course;
 
     public Person() {

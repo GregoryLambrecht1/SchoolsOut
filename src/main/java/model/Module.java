@@ -6,13 +6,14 @@ import java.util.List;
 @Entity
 public class Module {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
+    @Column(length = 2000)
     private String description;
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToOne
     private Course course;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "module" , cascade = CascadeType.ALL)
     private List<Exam> exams;
 
     public Module() {

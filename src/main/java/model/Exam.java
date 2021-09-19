@@ -1,22 +1,20 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 public class Exam {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
+    @Column(length = 2000)
     private String description;
     private LocalDate date;
     private int weight;
     private int total;
-    @OneToMany
+    @ManyToOne
     private Module module;
 
     public Exam() {
@@ -29,6 +27,17 @@ public class Exam {
         this.weight = weight;
         this.total = total;
         this.module = module;
+    }
+    public Exam(String name, String description, LocalDate date, int weight, int total){
+        this.name = name;
+        this.description = description;
+        this.date = date;
+        this.weight = weight;
+        this.total = total;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getName() {
